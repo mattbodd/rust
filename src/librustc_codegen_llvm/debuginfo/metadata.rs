@@ -170,7 +170,7 @@ impl TypeMap<'ll, 'tcx> {
     // the id is unknown.
     fn get_unique_type_id_as_string(&self, unique_type_id: UniqueTypeId) -> &str {
         let UniqueTypeId(interner_key) = unique_type_id;
-        self.unique_id_interner.get(interner_key)
+        self.unique_id_interner.symbol_str(interner_key)
     }
 
     // Get the UniqueTypeId for the given type. If the UniqueTypeId for the given
@@ -226,7 +226,7 @@ impl TypeMap<'ll, 'tcx> {
         let variant_part_type_id = format!("{}_variant_part",
                                            self.get_unique_type_id_as_string(enum_type_id));
         let interner_key = self.unique_id_interner.intern(&variant_part_type_id);
-        self.unique_id_interner.get(interner_key)
+        self.unique_id_interner.symbol_str(interner_key)
     }
 }
 
